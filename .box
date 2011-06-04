@@ -2,8 +2,9 @@
 ## GENERAL SETTINGS
 ################################################
 shared_writable_dirs:
-    - /manifest
-    - /workspace
+    - /manifest/cache
+    - /manifest/logs
+    - /manifest/tmp
 url_rewrites:
     - ^(symphony/)?index.php(/.*/?) $1$2
     - ^symphony\/?$ index.php?mode=administration&%{QUERY_STRING}

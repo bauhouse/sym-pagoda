@@ -1,9 +1,10 @@
 ._*
 .Apple*
 .DS_Store
-*config.php
 workspace/
-manifest/
+manifest/cache
+manifest/logs
+manifest/tmp
 *.esproj
 *~
 *.geany
