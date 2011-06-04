@@ -1,4 +1,26 @@
 ################################################
+## GENERAL SETTINGS
+################################################
+shared_writable_dirs:
+    - /manifest
+    - /workspace
+url_rewrites:
+    - ^(symphony/)?index.php(/.*/?) $1$2
+    - ^symphony\/?$ index.php?mode=administration&%{QUERY_STRING}
+    - ^(.*\/?)$ index.php?symphony-page=$1&%{QUERY_STRING}
+ 
+ 
+################################################
+## WEB SPECIFIC SETTINGS
+################################################
+document_root: /
+index_list: [index.html, index.php]
+default_gateway: index.php
+error_pages:
+    404: /page-not-found/              
+ 
+ 
+################################################
 ## PHP SPECIFIC SETTINGS
 ################################################
 php_version: 5.3.5
