@@ -1,7 +1,6 @@
 ._*
 .Apple*
 .DS_Store
-workspace/
 manifest/cache
 manifest/logs
 manifest/tmp
