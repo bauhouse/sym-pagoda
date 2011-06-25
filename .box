@@ -5,10 +5,6 @@ shared_writable_dirs:
     - /manifest/cache
     - /manifest/logs
     - /manifest/tmp
-url_rewrites:
-    - ^(symphony/)?index.php(/.*/?) $1$2
-    - ^symphony\/?$ index.php?mode=administration&%{QUERY_STRING}
-    - ^(.*\/?)$ index.php?symphony-page=$1&%{QUERY_STRING}
  
  
 ################################################
