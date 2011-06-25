@@ -1,0 +1,45 @@
+################################################
+## GENERAL SETTINGS
+################################################
+shared_writable_dirs:
+    - /manifest/cache
+    - /manifest/logs
+    - /manifest/tmp
+url_rewrites:
+    - ^(symphony/)?index.php(/.*/?) $1$2
+    - ^symphony\/?$ index.php?mode=administration&%{QUERY_STRING}
+    - ^(.*\/?)$ index.php?symphony-page=$1&%{QUERY_STRING}
+ 
+ 
+################################################
+## WEB SPECIFIC SETTINGS
+################################################
+document_root: /
+index_list: [index.html, index.php]
+default_gateway: index.php
+error_pages:
+    404: /page-not-found/              
+ 
+ 
+################################################
+## PHP SPECIFIC SETTINGS
+################################################
+php_version: 5.3.5
+php_extensions:
+	- curl
+	- dom
+	- mysql
+	- xml
+	- xsl
+	- zip
+php_error_reporting: 'E_ALL'
+php_display_errors: On
+php_short_open_tag: On
+php_default_mimetype: text/html
+php_date_timezone: America/Vancouver
+php_max_execution_time: 30
+php_max_input_time: 60
+php_post_max_size: 8M
+php_file_uploads: On
+php_upload_max_filesize: 2M
+php_max_file_uploads: 20
