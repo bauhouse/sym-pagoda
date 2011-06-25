@@ -11,6 +11,7 @@
 
 <xsl:template match="/">
 	<h1><xsl:value-of select="$page-title"/></h1>
+	<xsl:copy-of select="data/params" />
 </xsl:template>
 
 </xsl:stylesheet>
