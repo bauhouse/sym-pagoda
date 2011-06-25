@@ -10,8 +10,20 @@
 	indent="yes" />
 
 <xsl:template match="/">
-	<h1><xsl:value-of select="$page-title"/></h1>
-	<xsl:copy-of select="data/params" />
+	<html>
+		<head><title><xsl:value-of select="$website-name" /></title></head>
+		<body>
+			<h1><xsl:value-of select="$page-title"/></h1>
+			<ul><xsl:apply-templates select="data/params/*" /></ul>
+		</body>
+	</html>
+</xsl:template>
+
+<xsl:template match="data/params/*">
+	<li>
+		<strong><xsl:value-of select="name()" /></strong>:
+		<span><xsl:value-of select="." /></span>
+	</li>
 </xsl:template>
 
 </xsl:stylesheet>
