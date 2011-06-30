@@ -1,30 +1,70 @@
 ################################################
 ## GENERAL SETTINGS
 ################################################
+
 shared_writable_dirs:
-    - /manifest/cache
-    - /manifest/logs
-    - /manifest/tmp
+	- /manifest/cache
+	- /manifest/logs
+	- /manifest/tmp
+
+permissions:
+	"^manifest/(.*)$":
+		- all: deny
+	"^workspace/utilities/(.*).xsl$":
+		- all: deny
+	"^workspace/pages/(.*).xsl$":
+		- all: deny
+	"^(.*).sql$"
+		- all: deny
+	"(^|/)\."
+		- all: deny
+ 
 url_rewrites:
-    - ^(symphony/)?index.php(/.*/?) $1$2
-    - ^symphony\/?$ index.php?mode=administration&%{QUERY_STRING}
-    - ^symphony(\/(.*\/?))?$ index.php?symphony-page=$1&mode=administration&%{QUERY_STRING}
-    - ^(.*\/?)$ index.php?symphony-page=$1&%{QUERY_STRING}
- 
- 
+	### IMAGE RULES
+	- "^/image\/(.+\.(jpg|gif|jpeg|png|bmp))$ /extensions/jit_image_manipulation/lib/image.php?param=$1 last"
+
+	### CHECK FOR TRAILING SLASH - Will ignore files
+	-
+		rule: "^(.*)$ $1/ redirect"
+		conditions:
+			- '$request_filename !~ "/$"'
+
+	### URL Correction
+	- "^/(symphony/)?index.php(/.*/?) /$1$2"
+
+	### SIMPLE ADMIN REWRITE
+	- "^/symphony\/?$ /?mode=administration&$query_string last"
+
+	### ADVANCED ADMIN REWRITE
+	-
+		rule: "^/symphony(\/(.*\/?))?$ /?symphony-page=$1&mode=administration&$query_string last"
+		conditions:
+			- "!-f $request_filename"
+			- "!-d $request_filename"
+
+	### FRONTEND REWRITE - Will ignore files and folders
+	-
+		rule: "^/(.*\/?)$ /?symphony-page=$1&$query_string last"
+		conditions:
+			- "!-f $request_filename"
+			- "!-d $request_filename" 
+
+
 ################################################
 ## WEB SPECIFIC SETTINGS
 ################################################
+
 document_root: /
 index_list: [index.html, index.php]
 default_gateway: index.php
 error_pages:
-    404: /page-not-found/              
- 
- 
+	404: /page-not-found/
+
+
 ################################################
 ## PHP SPECIFIC SETTINGS
 ################################################
+
 php_version: 5.3.5
 php_extensions:
 	- curl
