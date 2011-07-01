@@ -14,11 +14,11 @@ permissions:
 		- all: deny
 	"^workspace/pages/(.*).xsl$":
 		- all: deny
-	"^(.*).sql$"
+	"^(.*).sql$":
 		- all: deny
-	"(^|/)\."
+	"(^|/)\.":
 		- all: deny
- 
+
 url_rewrites:
 	### IMAGE RULES
 	- "^/image\/(.+\.(jpg|gif|jpeg|png|bmp))$ /extensions/jit_image_manipulation/lib/image.php?param=$1 last"
@@ -47,7 +47,7 @@ url_rewrites:
 		rule: "^/(.*\/?)$ /?symphony-page=$1&$query_string last"
 		conditions:
 			- "!-f $request_filename"
-			- "!-d $request_filename" 
+			- "!-d $request_filename"
 
 
 ################################################
