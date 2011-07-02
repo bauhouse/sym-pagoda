@@ -6,6 +6,7 @@ shared_writable_dirs:
 	- /manifest/cache
 	- /manifest/logs
 	- /manifest/tmp
+	- /workspace/uploads
 
 permissions:
 	"^manifest/(.*)$":
