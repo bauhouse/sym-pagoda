@@ -5,6 +5,8 @@
 manifest/cache
 manifest/logs
 manifest/tmp
+manifest_pagoda
+workspace/uploads
 *.esproj
 *~
 *.geany
