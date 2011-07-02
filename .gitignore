@@ -1,9 +1,11 @@
 ._*
 .Apple*
 .DS_Store
+.htaccess
 manifest/cache
 manifest/logs
 manifest/tmp
+workspace/uploads
 *.esproj
 *~
 *.geany
