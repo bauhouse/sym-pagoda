@@ -8,48 +8,6 @@ shared_writable_dirs:
 	- /manifest/tmp
 	- /workspace/uploads
 
-permissions:
-	"^manifest/(.*)$":
-		- all: deny
-	"^workspace/utilities/(.*).xsl$":
-		- all: deny
-	"^workspace/pages/(.*).xsl$":
-		- all: deny
-	"^(.*).sql$":
-		- all: deny
-	"(^|/)\.":
-		- all: deny
-
-url_rewrites:
-	### IMAGE RULES
-	- "^/image\/(.+\.(jpg|gif|jpeg|png|bmp))$ /extensions/jit_image_manipulation/lib/image.php?param=$1 last"
-
-	### CHECK FOR TRAILING SLASH - Will ignore files
-	-
-		rule: "^(.*)$ $1/ redirect"
-		conditions:
-			- '$request_filename !~ "/$"'
-
-	### URL Correction
-	- "^/(symphony/)?index.php(/.*/?) /$1$2"
-
-	### SIMPLE ADMIN REWRITE
-	- "^/symphony\/?$ /?mode=administration&$query_string last"
-
-	### ADVANCED ADMIN REWRITE
-	-
-		rule: "^/symphony(\/(.*\/?))?$ /?symphony-page=$1&mode=administration&$query_string last"
-		conditions:
-			- "!-f $request_filename"
-			- "!-d $request_filename"
-
-	### FRONTEND REWRITE - Will ignore files and folders
-	-
-		rule: "^/(.*\/?)$ /?symphony-page=$1&$query_string last"
-		conditions:
-			- "!-f $request_filename"
-			- "!-d $request_filename"
-
 
 ################################################
 ## WEB SPECIFIC SETTINGS
